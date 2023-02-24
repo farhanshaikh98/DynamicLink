@@ -86,7 +86,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               final dynamicLink = await FirebaseDynamicLinks.instance
                   .buildShortLink(dynamicLinkParams);
 
-              await Share.share(dynamicLink.shortUrl.toString());
+              await Share.share(
+                  "Hey, checkout this awesome books ${dynamicLink.shortUrl.toString()}");
             },
             child: Text('Share With Friends'),
           ),

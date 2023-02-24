@@ -15,14 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> bookImgs = [
     "assets/aaron-burden.jpg",
     "assets/brett-jordan.jpg",
-    "assets/vika-strawberrika.jpg",
-    "assets/ashim-d-silva.jpg",
   ];
   List<String> bookPrice = [
     "\$20.00",
     "\$23.00",
-    "\$14.00",
-    "\$50.00",
   ];
   List<String> bookNames = [
     "Fahrenheit 451 by Ray Bradbury",
@@ -69,6 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => openTheBook());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -79,22 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
           'Book Store',
           style: TextStyle(color: Colors.black),
         ),
-        // actions: [
-        //   TextButton(
-        //       onPressed: () async {
-        //         await Share.share(
-        //             'Hey, checkout this awesome app https://dynamicproduct.page.link');
-        //       },
-        //       child: Row(
-        //         children: [
-        //           Icon(Icons.share),
-        //           SizedBox(
-        //             width: 5,
-        //           ),
-        //           Text('Share with Friends'),
-        //         ],
-        //       ))
-        // ],
       ),
       body: ListView.builder(
           padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -151,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .buildShortLink(dynamicLinkParams);
 
                                 await Share.share(
-                                    dynamicLink.shortUrl.toString());
+                                    "Hey, checkout this awesome books ${dynamicLink.shortUrl.toString()}");
                               },
                               icon: Icon(Icons.share)),
                         ],
